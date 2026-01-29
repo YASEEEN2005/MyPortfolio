@@ -10,9 +10,9 @@ const Hero = () => {
     <SectionWrapper id="hero" className="min-h-screen flex items-center justify-center pt-28 md:pt-20 bg-bright-snow relative overflow-hidden">
       
       {/* Background Decor - Extremely Subtle Grayscale/Accent mix */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-platinum rounded-full blur-[120px] opacity-60" />
-         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent-soft/20 rounded-full blur-[100px] opacity-40" />
+      <div className="absolute inset-0 z-0 pointer-events-none transform-gpu">
+         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-platinum rounded-full blur-[100px] opacity-60 will-change-transform" />
+         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent-soft/20 rounded-full blur-[80px] opacity-40 will-change-transform" />
       </div>
 
       <div className="grid lg:grid-cols-2 gap-16 items-center w-full max-w-7xl relative z-10">
