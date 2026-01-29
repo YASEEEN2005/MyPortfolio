@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Teal -> Slate Gradient for subtle backgrounds */
+  --primary-gradient: linear-gradient(135deg, #14B8A6 0%, #0F172A 100%);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(15, 23, 42, 0.05);
+  /* Very subtle dark border */
+  --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+body {
+  @apply bg-background text-text-primary antialiased overflow-x-hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Icons Global Override */
+svg {
+  @apply text-current;
+}
+
+/* Glassmorphism Utilities - Clean & Sharp */
+.glass {
+  @apply bg-white/90 backdrop-blur-md border border-gray-200 shadow-sm;
+}
+
+.glass-card {
+  @apply bg-white border border-gray-200 rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-sm;
+}
+
+/* Text Gradients - kept simplified or removed if image is solid */
+.text-gradient {
+  @apply text-primary;
+  /* Image uses solid colors mostly */
+}
+
+/* Custom Scrollbar - Dark Thumb */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+}
