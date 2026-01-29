@@ -7,30 +7,41 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Grayscale Palette (Mandatory)
+        'bright-snow': '#f8f9fa',
+        'platinum': '#e9ecef',
+        'alabaster': '#dee2e6',
+        'pale-slate': '#ced4da',
+        'slate-grey': '#6c757d',
+        'iron-grey': '#495057',
+        'gunmetal': '#343a40',
+        'carbon-black': '#212529',
+
         primary: {
-          DEFAULT: '#14B8A6', // Teal 500 (from image hire me)
-          hover: '#0D9488',   // Teal 600
-        },
-        brand: {
-          dark: '#0F172A',    // Slate 900 (navbar/text)
-          secondary: '#334155', // Slate 700
+          DEFAULT: '#4F46E5', // Primary Brand Check
+          hover: '#4338CA',
         },
         accent: {
-          DEFAULT: '#14B8A6', 
-          soft: '#CCFBF1',
-          hover: '#0F766E',
+          DEFAULT: '#22C55E', // Soft Accent
+          soft: '#BBF7D0',
+          hover: '#16A34A',
+          highlight: '#06B6D4',
         },
+        
+        // Semantic Mappings
         background: {
-          DEFAULT: '#FFFFFF', // Pure white like image
-          surface: '#F8FAFC', // Very light gray
+          DEFAULT: '#f8f9fa', // bright-snow
+          surface: '#ffffff',
+          dark: '#343a40', // gunmetal
         },
         text: {
-          primary: '#0F172A', // Dark Slate (Name)
-          secondary: '#64748B', // Muted Blue-Gray (Role)
-          light: '#F8FAFC',   // For Navbar
+          primary: '#212529', // carbon-black
+          secondary: '#6c757d', // slate-grey
+          muted: '#adb5bd', // pale-slate-2
+          light: '#f8f9fa',
         },
         border: {
-           DEFAULT: '#E2E8F0',
+           DEFAULT: '#dee2e6', // alabaster-grey
         }
       },
     },

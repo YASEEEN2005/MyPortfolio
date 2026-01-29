@@ -1,132 +1,91 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import SectionWrapper from './SectionWrapper';
-import Button from './Button';
 import { projects } from '../data';
-import { Github, ExternalLink, Layers, Code } from 'lucide-react';
+import { Github, ExternalLink, ArrowRight } from 'lucide-react';
+import Button from './Button';
 
 const Projects = () => {
-  const featuredProject = projects[0];
-  const otherProjects = projects.slice(1);
-
   return (
-    <SectionWrapper id="projects" className="bg-background">
+    <SectionWrapper id="projects" className="bg-bright-snow relative">
       <div className="text-center mb-16">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-text-primary mb-4"
-        >
-          Featured <span className="text-gradient">Projects</span>
-        </motion.h2>
+         <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold text-carbon-black mb-4"
+         >
+            Featured <span className="text-primary">Projects</span>
+         </motion.h2>
+         <p className="text-slate-grey text-lg max-w-2xl mx-auto">
+             A showcase of my recent work, highlighting performance, design, and functionality.
+         </p>
       </div>
 
-      {/* Main Featured Project */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="glass-card p-8 md:p-12 mb-20 border border-primary/10 relative overflow-hidden"
-      >
-        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary/5 to-transparent pointer-events-none" />
-        
-        <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
-          <div className="order-2 md:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full text-primary text-sm mb-6 font-medium">
-               <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-               Featured Work
-            </div>
-            <h3 className="text-3xl font-bold text-text-primary mb-4">{featuredProject.title}</h3>
-            <p className="text-text-secondary leading-relaxed mb-6 text-lg">
-                {featuredProject.description}
-            </p>
-            
-            <div className="space-y-4 mb-8">
-                <div>
-                   <h4 className="flex items-center gap-2 text-text-primary font-semibold mb-3">
-                        <Layers className="w-5 h-5 text-primary" /> Key Features
-                   </h4>
-                   <ul className="grid grid-cols-2 gap-2">
-                     {featuredProject.features.map((feature, i) => (
-                         <li key={i} className="flex items-center gap-2 text-text-muted text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent" /> {feature}
-                         </li>
-                     ))}
-                   </ul>
+      <div className="grid lg:grid-cols-2 gap-10">
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="group relative bg-white rounded-2xl overflow-hidden border border-alabaster shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 ease-out"
+          >
+            {/* Image Container with Zoom Effect */}
+            <div className="aspect-video overflow-hidden relative bg-platinum">
+                {/* Overlay on Hover */}
+                <div className="absolute inset-0 bg-gunmetal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center gap-4 backdrop-blur-[2px]">
+                    <motion.a 
+                        href={project.github}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileHover={{ scale: 1.1 }}
+                        className="p-3 bg-white rounded-full text-carbon-black hover:text-primary transition-colors shadow-lg opacity-0 group-hover:opacity-100 delay-100 duration-300"
+                    >
+                        <Github className="w-5 h-5" />
+                    </motion.a>
+                    <motion.a 
+                        href={project.link}
+                         initial={{ scale: 0.8, opacity: 0 }}
+                         whileHover={{ scale: 1.1 }}
+                         className="p-3 bg-white rounded-full text-carbon-black hover:text-primary transition-colors shadow-lg opacity-0 group-hover:opacity-100 delay-150 duration-300"
+                    >
+                        <ExternalLink className="w-5 h-5" />
+                    </motion.a>
                 </div>
                 
-                <div>
-                    <h4 className="flex items-center gap-2 text-text-primary font-semibold mb-3">
-                        <Code className="w-5 h-5 text-accent" /> Tech Stack
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                        {featuredProject.techStack.map((tech) => (
-                            <span key={tech} className="px-3 py-1 bg-gray-100/80 rounded-lg text-xs text-text-secondary border border-gray-200">
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            <div className="flex gap-4">
-               <Button href={featuredProject.liveLink} variant="primary">
-                  Live Demo <ExternalLink className="w-4 h-4 ml-2" />
-               </Button>
-               <Button href={featuredProject.githubLink} variant="outline">
-                  GitHub <Github className="w-4 h-4 ml-2" />
-               </Button>
-            </div>
-          </div>
-
-          <div className="order-1 md:order-2">
-             <div className="relative rounded-xl overflow-hidden shadow-xl border border-gray-100 group cursor-pointer hover:shadow-2xl transition-shadow duration-300">
-                <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
                 <img 
-                    src={featuredProject.image} 
-                    alt={featuredProject.title} 
-                    className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700" 
+                    src={project.img} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out block"
                 />
-             </div>
-          </div>
-        </div>
-      </motion.div>
+            </div>
 
-      {/* Other Projects Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {otherProjects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
-            viewport={{ once: true }}
-            className="glass-card p-6 flex flex-col h-full"
-          >
-            <div className="relative h-48 mb-6 overflow-hidden rounded-lg border border-gray-100">
-               <img src={project.image} alt={project.title} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
-            </div>
-            
-            <h3 className="text-xl font-bold text-text-primary mb-2">{project.title}</h3>
-            <p className="text-text-muted text-sm mb-4 flex-grow">{project.description}</p>
-            
-            <div className="flex flex-wrap gap-2 mb-6">
-                {project.techStack.map((tech) => (
-                    <span key={tech} className="text-xs text-primary bg-primary/5 px-2 py-1 rounded">
-                        {tech}
-                    </span>
-                ))}
-            </div>
-            
-            <div className="flex justify-between items-center mt-auto border-t border-gray-100 pt-4">
-                 <a href={project.githubLink} className="text-text-secondary hover:text-primary flex items-center gap-1 text-sm transition-colors">
-                    <Github className="w-4 h-4" /> Code
-                 </a>
-                  <a href={project.liveLink} className="text-accent hover:text-accent-hover flex items-center gap-1 text-sm transition-colors">
-                     Live Demo <ExternalLink className="w-3 h-3" />
-                 </a>
+            {/* Content */}
+            <div className="p-8 relative">
+                 <div className="absolute top-0 right-8 -translate-y-1/2 bg-primary text-white p-3 rounded-xl shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform duration-300">
+                    <ExternalLink className="w-5 h-5" />
+                 </div>
+
+                <h3 className="text-2xl font-extrabold text-carbon-black mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
+                <p className="text-slate-grey mb-6 line-clamp-3 leading-relaxed">{project.desc}</p>
+                
+                <div className="flex flex-wrap gap-2 mb-8">
+                    {project.stack.map((tech) => (
+                        <span key={tech} className="px-3 py-1 bg-bright-snow text-iron-grey text-xs font-bold uppercase tracking-wider rounded-md border border-alabaster">
+                            {tech}
+                        </span>
+                    ))}
+                </div>
+
+                <div className="flex gap-4">
+                     <Button href={project.link} variant="primary" className="flex-1 py-2.5 text-sm">
+                        Live Demo
+                     </Button>
+                     <Button href={project.github} variant="outline" className="flex-1 py-2.5 text-sm">
+                        Source Code
+                     </Button>
+                </div>
             </div>
           </motion.div>
         ))}
